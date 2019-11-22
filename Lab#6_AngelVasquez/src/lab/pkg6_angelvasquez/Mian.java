@@ -5,8 +5,11 @@
  */
 package lab.pkg6_angelvasquez;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.chart.PieChart;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -88,12 +91,17 @@ public class Mian extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         sp_cantidad = new javax.swing.JSpinner();
+        pp_options = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Productos = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         jLabel1.setText("Nombre");
 
@@ -281,6 +289,27 @@ public class Mian extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jMenuItem2.setText("Eliminar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        pp_options.add(jMenuItem2);
+
+        jMenu2.setText("jMenu2");
+
+        jMenuItem3.setText("jMenuItem3");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("jMenuItem4");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("jMenuItem5");
+        jMenu2.add(jMenuItem5);
+
+        pp_options.add(jMenu2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable_Productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -291,6 +320,11 @@ public class Mian extends javax.swing.JFrame {
                 "Codigo", "Nombre", "Cantidadad", "Fecha Vencimiento", "Colorante"
             }
         ));
+        jTable_Productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_ProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_Productos);
 
         jMenu1.setText("Agregar");
@@ -307,9 +341,6 @@ public class Mian extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("jMenuItem2");
-        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -362,6 +393,7 @@ public class Mian extends javax.swing.JFrame {
                 prductos.add(new Producto(Integer.parseInt(tf_Codigo.getText()), tf_cnombre.getText(), (Double) sp_cantazu.getValue(), (Double) sp_cantal.getValue(), nal, (Integer) sp_clote.getValue(), col, (Double) sp_cprice.getValue(), (Integer) sp_cantidad.getValue(), jdc_fechavencimiento.getDate()));
                 adimi.setListaproductos(prductos);
                 adimi.escribirArchivo();
+                inved.escribirArchivo("Se agregao una bebida");
                 JOptionPane.showMessageDialog(jd_crearProducto, "Producto creado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(jd_crearProducto, "Cree otro codigo");
@@ -384,6 +416,33 @@ public class Mian extends javax.swing.JFrame {
         jd_crearProducto.setLocationRelativeTo(this);
         jd_crearProducto.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        if (jTable_Productos.isColumnSelected(NORMAL)) {
+            prductos.remove(jTable_Productos.getSelectedRow());
+            adimi.setListaproductos(prductos);
+            try {
+                adimi.escribirArchivo();
+            } catch (IOException ex) {
+                
+            }
+            JOptionPane.showMessageDialog(this, "Producto Eliminado exitosamente");
+            try {
+                inved.escribirArchivo("Producto eliminado");
+            } catch (IOException ex) {
+                
+            }
+            Actualizar_Tabla();
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jTable_ProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_ProductosMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            pp_options.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_jTable_ProductosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -432,9 +491,13 @@ public class Mian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_Productos;
@@ -446,6 +509,7 @@ public class Mian extends javax.swing.JFrame {
     private javax.swing.JRadioButton jr_Rojo;
     private javax.swing.JRadioButton jr_nacional;
     private javax.swing.JRadioButton jr_verde;
+    private javax.swing.JPopupMenu pp_options;
     private javax.swing.JSpinner sp_cantal;
     private javax.swing.JSpinner sp_cantazu;
     private javax.swing.JSpinner sp_cantidad;
