@@ -294,8 +294,18 @@ public class Mian extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable_Productos);
 
         jMenu1.setText("Agregar");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("Agregar Producto");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("jMenuItem2");
@@ -350,6 +360,8 @@ public class Mian extends javax.swing.JFrame {
                     col += jr_verde.getText() + ",";
                 }
                 prductos.add(new Producto(Integer.parseInt(tf_Codigo.getText()), tf_cnombre.getText(), (Double) sp_cantazu.getValue(), (Double) sp_cantal.getValue(), nal, (Integer) sp_clote.getValue(), col, (Double) sp_cprice.getValue(), (Integer) sp_cantidad.getValue(), jdc_fechavencimiento.getDate()));
+                adimi.setListaproductos(prductos);
+                adimi.escribirArchivo();
                 JOptionPane.showMessageDialog(jd_crearProducto, "Producto creado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(jd_crearProducto, "Cree otro codigo");
@@ -357,8 +369,21 @@ public class Mian extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jd_crearProducto, "Ocurrio un errorS");
         }
-
+        Actualizar_Tabla();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        jd_crearProducto.pack();
+        jd_crearProducto.setModal(true);
+        jd_crearProducto.setLocationRelativeTo(this);
+        jd_crearProducto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -430,5 +455,6 @@ public class Mian extends javax.swing.JFrame {
     private javax.swing.JTextField tf_cnombre;
     // End of variables declaration//GEN-END:variables
     AdminProducto adimi = new AdminProducto("./Productos.txt");
+    Inventario inved = new Inventario("./Cambios.txt");
     ArrayList<Producto> prductos = new ArrayList();
 }
