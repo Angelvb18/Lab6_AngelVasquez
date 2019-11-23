@@ -1206,6 +1206,8 @@ public class Mian extends javax.swing.JFrame {
         } catch (IOException ex) {
 
         }
+        jd_factura.dispose();
+        Productosagregados = new ArrayList();
     }//GEN-LAST:event_jButton10MouseClicked
 
     /**

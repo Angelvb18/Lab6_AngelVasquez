@@ -1,0 +1,8 @@
+                                   Supermercado El Barrio
+                           Factura #1             22/11/2019 
+                        Produc.                Cant                Precio
+                              Crunsh           1                  L.7.0
+                              Coal           2                  L14.5
+                              Agua           1                  L.1.0
+                              Salva Vida           6                  L1.0
+                                                                                       Total:43.0
