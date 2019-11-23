@@ -43,25 +43,21 @@ public class Mian extends javax.swing.JFrame {
 
     public void Actualizar_Tabla() {
         jTable_Productos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Nombre", "Cantidadad", "Fecha Vencimiento", "Colorante", "Azucar", "Alcohol", "Nacional o no", "Lote", "Perecio"
-            }
+                new Object[][]{},
+                new String[]{
+                    "Codigo", "Nombre", "Cantidadad", "Fecha Vencimiento", "Colorante", "Azucar", "Alcohol", "Nacional o no", "Lote", "Perecio"
+                }
         ));
         jTable2_productos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Nombre", "Cantidadad", "Fecha Vencimiento", "Colorante", "Azucar", "Alcohol", "Nacional o no", "Lote", "Perecio"
-            }
+                new Object[][]{},
+                new String[]{
+                    "Codigo", "Nombre", "Cantidadad", "Fecha Vencimiento", "Colorante", "Azucar", "Alcohol", "Nacional o no", "Lote", "Perecio"
+                }
         ));
         DefaultTableModel modelot = (DefaultTableModel) jTable_Productos.getModel();
         for (int i = 0; i < prductos.size(); i++) {
-            Object[] Nrow = {prductos.get(i).getCodigo(), prductos.get(i).getNombre(), prductos.get(i).getCant(), prductos.get(i).getFecha_vencimiento(), prductos.get(i).getColorante(),prductos.get(i).getCantonz()+"oz",prductos.get(i).getCantalchol()+"%",
-            prductos.get(i).getNacional(),prductos.get(i).getNumlote(),prductos.get(i).getPrecio()};
+            Object[] Nrow = {prductos.get(i).getCodigo(), prductos.get(i).getNombre(), prductos.get(i).getCant(), prductos.get(i).getFecha_vencimiento(), prductos.get(i).getColorante(), prductos.get(i).getCantonz() + "oz", prductos.get(i).getCantalchol() + "%",
+                prductos.get(i).getNacional(), prductos.get(i).getNumlote(), prductos.get(i).getPrecio()};
             modelot.addRow(Nrow);
         }
         jTable_Productos.setModel(modelot);
@@ -918,7 +914,7 @@ public class Mian extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(jd_crearProducto, "Producto creado exitosamente");
                 tf_Codigo.setText("");
                 tf_cnombre.setText("");
-                sp_cprice.setValue(0);
+                
                 jr_nacional.setSelected(false);
                 jr_Amarillo.setSelected(false);
                 jr_Azul.setSelected(false);
@@ -930,14 +926,14 @@ public class Mian extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(jd_crearProducto, "Cree otro codigo");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(jd_crearProducto, "Ocurrio un errorS");
+            JOptionPane.showMessageDialog(jd_crearProducto, "Ocurrio un error"+e.getMessage());
         }
         Actualizar_Tabla();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -956,13 +952,13 @@ public class Mian extends javax.swing.JFrame {
             try {
                 adimi.escribirArchivo();
             } catch (IOException ex) {
-                
+
             }
             JOptionPane.showMessageDialog(this, "Producto Eliminado exitosamente");
             try {
                 inved.escribirArchivo("Producto eliminado");
             } catch (IOException ex) {
-                
+
             }
             Actualizar_Tabla();
         }
@@ -977,7 +973,7 @@ public class Mian extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-         jd_crearProducto.pack();
+        jd_crearProducto.pack();
         jd_crearProducto.setModal(true);
         jd_crearProducto.setLocationRelativeTo(this);
         jd_crearProducto.setVisible(true);
@@ -986,7 +982,7 @@ public class Mian extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         try {
-           String  nombre = JOptionPane.showInputDialog("Nombre");
+            String nombre = JOptionPane.showInputDialog("Nombre");
             prductos.get(jTable_Productos.getSelectedRow()).setNombre(nombre);
             adimi.setListaproductos(prductos);
             inved.escribirArchivo("Se modifico una bebida");
@@ -1007,7 +1003,7 @@ public class Mian extends javax.swing.JFrame {
             jd_chanfe.dispose();
         } catch (Exception e) {
         }
-        
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -1021,22 +1017,22 @@ public class Mian extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         String col = "";
-                if (jr_Amarillo1.isSelected()) {
-                    col += jr_Amarillo1.getText() + ",";
-                }
-                if (jr_Azul1.isSelected()) {
-                    col += jr_Azul1.getText() + ",";
-                }
-                if (jr_Blanco1.isSelected()) {
-                    col += jr_Blanco1.getText() + ",";
-                }
-                if (jr_Rojo1.isSelected()) {
-                    col += jr_Rojo1.getText() + ",";
-                }
-                if (jr_verde1.isSelected()) {
-                    col += jr_verde1.getText() + ",";
-                }
-                try {
+        if (jr_Amarillo1.isSelected()) {
+            col += jr_Amarillo1.getText() + ",";
+        }
+        if (jr_Azul1.isSelected()) {
+            col += jr_Azul1.getText() + ",";
+        }
+        if (jr_Blanco1.isSelected()) {
+            col += jr_Blanco1.getText() + ",";
+        }
+        if (jr_Rojo1.isSelected()) {
+            col += jr_Rojo1.getText() + ",";
+        }
+        if (jr_verde1.isSelected()) {
+            col += jr_verde1.getText() + ",";
+        }
+        try {
             prductos.get(jTable_Productos.getSelectedRow()).setColorante(col);
             adimi.setListaproductos(prductos);
             adimi.escribirArchivo();
@@ -1044,9 +1040,9 @@ public class Mian extends javax.swing.JFrame {
             jd_Colorante.dispose();
         } catch (Exception e) {
         }
-                
-            Actualizar_Tabla();
-            
+
+        Actualizar_Tabla();
+
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -1060,7 +1056,7 @@ public class Mian extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         try {
-            prductos.get(jTable_Productos.getSelectedRow()).setCant((Integer)sp_cantidad1.getValue());
+            prductos.get(jTable_Productos.getSelectedRow()).setCant((Integer) sp_cantidad1.getValue());
             adimi.setListaproductos(prductos);
             adimi.escribirArchivo();
             inved.escribirArchivo("Se modifico una bebida");
@@ -1081,7 +1077,7 @@ public class Mian extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
         try {
-            prductos.get(jTable_Productos.getSelectedRow()).setCantonz((Double)sp_cantazu1.getValue());
+            prductos.get(jTable_Productos.getSelectedRow()).setCantonz((Double) sp_cantazu1.getValue());
             adimi.setListaproductos(prductos);
             adimi.escribirArchivo();
             inved.escribirArchivo("Se modifico una bebida");
@@ -1107,7 +1103,7 @@ public class Mian extends javax.swing.JFrame {
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
         try {
-            prductos.get(jTable_Productos.getSelectedRow()).setCantalchol((Double)sp_cantal1.getValue());
+            prductos.get(jTable_Productos.getSelectedRow()).setCantalchol((Double) sp_cantal1.getValue());
             adimi.setListaproductos(prductos);
             adimi.escribirArchivo();
             inved.escribirArchivo("Se modifico una bebida");
@@ -1121,8 +1117,8 @@ public class Mian extends javax.swing.JFrame {
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
         try {
-            char nalp=JOptionPane.showInputDialog("Ingrese s si es nacional").charAt(0);
-             prductos.get(jTable_Productos.getSelectedRow()).setNacional(nalp);
+            char nalp = JOptionPane.showInputDialog("Ingrese s si es nacional").charAt(0);
+            prductos.get(jTable_Productos.getSelectedRow()).setNacional(nalp);
             adimi.setListaproductos(prductos);
             adimi.escribirArchivo();
             inved.escribirArchivo("Se modifico una bebida");
@@ -1134,7 +1130,7 @@ public class Mian extends javax.swing.JFrame {
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
         try {
-            prductos.get(jTable_Productos.getSelectedRow()).setNumlote((Integer)sp_clote1.getValue());
+            prductos.get(jTable_Productos.getSelectedRow()).setNumlote((Integer) sp_clote1.getValue());
             adimi.setListaproductos(prductos);
             adimi.escribirArchivo();
             inved.escribirArchivo("Se modifico una bebida");
@@ -1156,7 +1152,7 @@ public class Mian extends javax.swing.JFrame {
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         // TODO add your handling code here:
         try {
-            prductos.get(jTable_Productos.getSelectedRow()).setPrecio((Double)sp_cprice1.getValue());
+            prductos.get(jTable_Productos.getSelectedRow()).setPrecio((Double) sp_cprice1.getValue());
             adimi.setListaproductos(prductos);
             adimi.escribirArchivo();
             inved.escribirArchivo("Se modifico una bebida");
@@ -1169,7 +1165,7 @@ public class Mian extends javax.swing.JFrame {
 
     private void jMenuItem13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem13MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jMenuItem13MouseClicked
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
@@ -1182,11 +1178,15 @@ public class Mian extends javax.swing.JFrame {
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
         // TODO add your handling code here:
-        int cant = Integer.parseInt(JOptionPane.showInputDialog("Cantidad"));
-        Producto temp = prductos.get(jTable2_productos.getSelectedRow());
-        temp.setCant(cant);
-        Productosagregados.add(temp);
-        JOptionPane.showMessageDialog(jd_factura, "Agregado exitosamente");
+        try {
+            int cant = Integer.parseInt(JOptionPane.showInputDialog("Cantidad"));
+            Producto temp = prductos.get(jTable2_productos.getSelectedRow());
+            temp.setCant(cant);
+            Productosagregados.add(temp);
+            JOptionPane.showMessageDialog(jd_factura, "Agregado exitosamente");
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_jButton9MouseClicked
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -1199,12 +1199,12 @@ public class Mian extends javax.swing.JFrame {
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         // TODO add your handling code here:
-       Date fecha2 = new Date();
-       Fracturas fac = new Fracturas("./"+fecha2.getSeconds()+""+fecha2.getDay()+""+"Factura.txt");
+        Date fecha2 = new Date();
+        Fracturas fac = new Fracturas("./" + fecha2.getSeconds() + "" + fecha2.getDay() + "" + "Factura.txt");
         try {
             fac.escribirArchivo(Productosagregados);
         } catch (IOException ex) {
-           
+
         }
     }//GEN-LAST:event_jButton10MouseClicked
 
@@ -1333,6 +1333,6 @@ public class Mian extends javax.swing.JFrame {
     AdminProducto adimi = new AdminProducto("./Productos.txt");
     Inventario inved = new Inventario("./Cambios.txt");
     ArrayList<Producto> prductos = new ArrayList();
-    ArrayList<Producto>Productosagregados = new ArrayList();
-    
+    ArrayList<Producto> Productosagregados = new ArrayList();
+
 }
